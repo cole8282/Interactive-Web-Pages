@@ -41,7 +41,9 @@ function deleteMovie(event) {
   //remove the entire list item
   event.target.parentNode.remove();
   //when it does get deleted these things happen below
-  message.textContent = "Movie Deleted";
+  message.textContent = `${event.target.parentNode.textContent} deleted`;
+  //makes the message invisible a second after appearance
+  revealMessage();
 }
 
 function crossOffMovie(event) {
@@ -49,15 +51,26 @@ function crossOffMovie(event) {
   event.target.classList.toggle("checked");
   //when it does get crossed off theese things happen below
   if (event.target.classList.contains("checked")) {
-    message.textContent = "Movie Watched";
+    //event.target.textContent equals the movies name that was listed
+    message.textContent = `${event.target.textContent} Watched`;
   } else {
-    message.textContent = "Movie added back!";
+    message.textContent = `${event.target.textContent} added back!`;
   }
+  //makes the message invisible a second after appearance(see line 71)
+  revealMessage();
 }
 
 
 
+//reveal message function
+function revealMessage() {
 
+  //this makes it so the message isn't hidden when the function is first called
+  message.classList.remove("hide");
 
+  setTimeout(function () {
+    message.className = "hide"
+  }, 1000)
+}
 
 
